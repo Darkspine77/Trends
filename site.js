@@ -14,7 +14,7 @@ var config = {
           };
 firebase.initializeApp(config);
 var database = firebase.database().ref();
-database.once('value').then(function(snapshot) {
+database.on('state_changed').then(function(snapshot) {
     var data = snapshot.val()
     var namesList = [] 
     var searchesList = []
