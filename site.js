@@ -26,8 +26,9 @@ database.once('value').then(function(snapshot) {
         searchesList.push(parseInt(data[i].amount.replace(",",""))/10000) 
         tweetsList.push(data[i].tweets) 
     }
-   var ctx = document.getElementById("myChart");
-   var data = {
+    var ctx = document.getElementById("myChart");    
+
+    var data = {
     labels: namesList,
     datasets: [
         {
@@ -43,19 +44,24 @@ database.once('value').then(function(snapshot) {
     ]
 };
 
-var myBarChart = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: {
-        barValueSpacing: 20,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                }
-            }]
-        }
-    }
-});
+	var myBarChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: data,
+	    options: {
+	        barValueSpacing: 20,
+            maintainAspectRatio: false,
+            responsive: true,
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    min: 0,
+	                }
+	            }]
+	        }
+	    }
+	});
+	document.getElementById("myChart").width = 200;
+	document.getElementById("myChart").height = 200;
+
 });
 
