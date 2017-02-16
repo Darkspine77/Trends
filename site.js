@@ -27,7 +27,8 @@ database.once('value').then(function(snapshot) {
         tweetsList.push(data[i].tweets) 
     }
     var ctx = document.getElementById("myChart");    
-
+    ctx.width = 200;
+    ctx.height = 200;
     var data = {
     labels: namesList,
     datasets: [
@@ -60,8 +61,5 @@ database.once('value').then(function(snapshot) {
 	        }
 	    }
 	});
-	document.getElementById("myChart").width = 200;
-	document.getElementById("myChart").height = 200;
-
 });
 
