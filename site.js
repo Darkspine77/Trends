@@ -67,7 +67,7 @@ function update(){
 });
 
 }
-database.on('value').then(function(snapshot) {
+database.on('value',function(snapshot) {
     var data = snapshot.val()
     var namesList = [] 
     var searchesList = []
