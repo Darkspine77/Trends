@@ -67,8 +67,7 @@ function update(){
 });
 
 }
-database.once('child_changed').then(function(snapshot) {
-	window.location.reload();
+database.on('value').then(function(snapshot) {
     var data = snapshot.val()
     var namesList = [] 
     var searchesList = []
