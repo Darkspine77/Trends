@@ -27,7 +27,7 @@ function update(){
     for (var i = data.length - 1; i >= 0; i--) {
         namesList.push(data[i].name) 
         searchesList.push(parseInt(data[i].amount.replace(",",""))/10000) 
-        tweetsList.push(data[i].tweets) 
+        tweetsList.push(data[i].tweets/5) 
     }
     var ctx = document.getElementById("myChart");    
     ctx.width = 200;
@@ -41,7 +41,7 @@ function update(){
             data: searchesList
         },
         {
-            label: "Tweets",
+            label: "Tweets per second",
             backgroundColor: "blue",
             data: tweetsList
         }
