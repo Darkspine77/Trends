@@ -67,7 +67,4 @@ function update(){
 });
 
 }
-database.on('value',function(snapshot) {
-   location.reload()
-});
 
