@@ -69,6 +69,8 @@ function update(){
 	    }
 	});
 });
-
+setInterval(function(){
+	location.reload()
+}, 60);
 }
 
