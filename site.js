@@ -16,9 +16,9 @@ firebase.initializeApp(config);
 var database = firebase.database().ref();
 update()
 
-database.on('value',function(snapshot) {
-   location.reload()
-});
+// database.on('value',function(snapshot) {
+//    location.reload()
+// });
 
 function update(){
 	database.once('value').then(function(snapshot) {
