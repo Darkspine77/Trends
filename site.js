@@ -71,6 +71,6 @@ function update(){
 });
 setInterval(function(){
 	location.reload()
-}, 60);
+}, 60000);
 }
 
