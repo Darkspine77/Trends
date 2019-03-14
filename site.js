@@ -47,7 +47,7 @@ function displayTrend(trend){
             responsive: false,
             title: {
                 display: true,
-                text: [trend.name,"Tweets: " + trend.tweets]
+                text: [trend.name,"Tweets: " + trend.tweets.length]
             },
             onClick:function(result,array){
                 window.open("https://www.google.com/search?q=" + trend.name + " " + trend.related[array[0]["_index"]].title + "&tbm=nws")
@@ -74,7 +74,7 @@ function update(db){
     for (var x = trends.length - 1; x >= 0; x--) {
         labels.push(trends[x].name)
         searchValues.push(parseInt(trends[x].amount))
-        tweetValues.push(trends[x].tweets)
+        tweetValues.push(trends[x].tweets.length)
     }
     var graphData = {
         labels: labels,
