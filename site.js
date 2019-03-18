@@ -58,7 +58,7 @@ function displayTrend(trend){
 
 function update(db){
     $("#trends").remove()
-    $("#trendData").remove()
+    $("#trendData").empty();
     $(".charts").append("<canvas id='trends'></canvas>");
 	var trends = db.trends
     var timestamp = new Date(db.timestamp)
@@ -69,12 +69,19 @@ function update(db){
 	    return parseFloat(a.amount) - parseFloat(b.amount);
 	});
     var labels = []
-    var searchValues = []	
+    var searchValues = []
+    var tweets = []
     var tweetValues = []
     for (var x = trends.length - 1; x >= 0; x--) {
         labels.push(trends[x].name)
         searchValues.push(parseInt(trends[x].amount))
-        tweetValues.push(trends[x].tweets.length)
+        if(trends[x].tweets){
+            tweetValues.push(trends[x].tweets.length)   
+            tweets[x] = trends[x].tweets
+        } else {
+            tweets[x] = ["None"]
+            tweetValues.push(0) 
+        }
     }
     var graphData = {
         labels: labels,
@@ -102,14 +109,13 @@ function update(db){
             },
             onClick:function(result,array){
             	if(array[0] != undefined){
-//                    $("#trendData").remove()
-//                    $(".charts").append("<canvas id='trendData'></canvas>");
-//	                $('html, body').animate({
-//	                    scrollTop: $("#trendData").offset().top
-//	                }, 1000);
-//	                displayTrend(trends[array[0]["_index"]])
-                    var trend = labels[array[0]["_index"]]
-                    window.open("https://www.google.com/search?q=" + trend)
+                    var rawTweets = tweets[19 - parseInt(array[0]["_index"])]
+                    if(rawTweets[0] != "None"){
+                       $("#trendData").empty();
+                        for(var i = 0;i<rawTweets.length;i++){
+                            $("#trendData").append("<h1>" + rawTweets[i].text + ": " + rawTweets[i].accuracy +  "<h1>")    
+                        }
+                    }
 	            }
             }
         }
